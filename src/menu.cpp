@@ -3,20 +3,6 @@
 
 using namespace geode::prelude;
 
-enum class KiraTab {
-    Core = 0,
-    Protection,
-    Editor,
-    Visual,
-    Gameplay,
-    Info,
-    Global,
-    Safety,
-    Screen,
-    Tools,
-    Replay
-};
-
 static bool g_menuOpen = false;
 
 class KiraMenuLayer : public CCLayer {
@@ -38,68 +24,51 @@ public:
 
         auto winSize = CCDirector::get()->getWinSize();
 
-        auto bg = CCLayerColor::create({20, 20, 30, 200});
+        auto bg = CCLayerColor::create({15, 15, 25, 210});
         bg->setContentSize(winSize);
         this->addChild(bg);
 
         auto title = CCLabelBMFont::create("KiraHack", "bigFont.fnt");
-        title->setScale(0.65f);
-        title->setPosition({winSize.width / 2.f, winSize.height - 35.f});
+        title->setScale(0.6f);
+        title->setPosition({winSize.width / 2.f, winSize.height - 40.f});
         this->addChild(title);
 
-        // Tab labels
-        const char* tabs[] = {
-            "Core", "Protection", "Editor", "Visual", "Gameplay",
-            "Info", "Global", "Safety", "Screen", "Tools", "Replay"
-        };
-
-        float x = 60.f;
-        float y = winSize.height - 80.f;
-
-        for (int i = 0; i < 11; ++i) {
-            auto label = CCLabelBMFont::create(tabs[i], "goldFont.fnt");
-            label->setScale(0.4f);
-            label->setPosition({x + (i % 6) * 95.f, y - (i / 6) * 30.f});
-            this->addChild(label);
-        }
-
-        // Screen / Display section hint
         auto info = CCLabelBMFont::create(
-            "Screen tab: Unlock FPS, Physics TPS, VSync, Lock Delta",
+            "TAB Menu\n\nCore | Screen | etc.\n\nUnlock FPS / TPS / Hz settings available",
             "chatFont.fnt"
         );
+        info->setAlignment(kCCTextAlignmentCenter);
         info->setScale(0.55f);
         info->setPosition({winSize.width / 2.f, winSize.height / 2.f});
         this->addChild(info);
 
-        auto hint = CCLabelBMFont::create("Press TAB or ESC to close", "chatFont.fnt");
-        hint->setScale(0.55f);
-        hint->setPosition({winSize.width / 2.f, 25.f});
+        auto hint = CCLabelBMFont::create("Press ESC or TAB to close", "chatFont.fnt");
+        hint->setScale(0.5f);
+        hint->setPosition({winSize.width / 2.f, 30.f});
         this->addChild(hint);
 
         return true;
     }
 
     void keyBackClicked() override {
-        this->removeFromParentAndCleanup(true);
+        this->removeFromParent();
         g_menuOpen = false;
     }
 };
 
 class $modify(CCKeyboardDispatcher) {
-    bool dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown, bool isKeyRepeat) {
-        if (isKeyDown && !isKeyRepeat && key == KEY_Tab) {
+    bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool repeat) {
+        if (down && !repeat && key == KEY_Tab) {
             if (!g_menuOpen) {
                 if (auto scene = CCDirector::get()->getRunningScene()) {
-                    auto menu = KiraMenuLayer::create();
-                    if (menu) {
-                        scene->addChild(menu, 999);
+                    if (auto menu = KiraMenuLayer::create()) {
+                        scene->addChild(menu, 1000);
                         g_menuOpen = true;
                     }
                 }
             }
             return true;
         }
-        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, isKeyDown, isKeyRepeat);
+        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, repeat);
     }
 };

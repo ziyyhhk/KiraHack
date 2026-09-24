@@ -8,11 +8,10 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.2.1-alpha",
+	"version": "1.2.2-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod with in-game tabbed menu. Accurate core + Display features.",
-	"early-load": false,
-	"tags": ["utility", "cheat", "enhancement", "menu"],
+	"description": "Modern Geometry Dash utility mod with in-game menu. Unlock FPS / TPS / Hz + core features.",
+	"tags": ["utility", "cheat", "enhancement"],
 	"links": {
 		"source": "https://github.com/ziyyhhk/KiraHack"
 	},
@@ -34,41 +33,21 @@
 			"min": 0.1,
 			"max": 5.0
 		},
-		"fps-unlock": {
+		"unlock-fps": {
 			"name": "Unlock FPS",
 			"type": "bool",
 			"default": false
 		},
 		"target-fps": {
-			"name": "Target FPS",
+			"name": "Target FPS / Hz",
+			"description": "Target frames per second (also used as Hz)",
 			"type": "int",
 			"default": 240,
 			"min": 60,
 			"max": 1000
 		},
-		"physics-tps": {
-			"name": "Physics TPS",
-			"description": "Show / use higher physics tick rate display",
-			"type": "bool",
-			"default": false
-		},
-		"vertical-sync": {
-			"name": "Vertical Sync",
-			"type": "bool",
-			"default": false
-		},
-		"lock-delta": {
-			"name": "Lock Delta",
-			"type": "bool",
-			"default": false
-		},
-		"show-hitboxes": {
-			"name": "Show Hitboxes",
-			"type": "bool",
-			"default": false
-		},
-		"no-death-effect": {
-			"name": "No Death Effect",
+		"show-tps": {
+			"name": "Show Physics TPS",
 			"type": "bool",
 			"default": false
 		}
