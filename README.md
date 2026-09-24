@@ -1,47 +1,58 @@
 # KiraHack
 
-**KiraHack** is a modern Geometry Dash utility & enhancement mod built with Geode.
+Modern Geometry Dash utility mod built with Geode.
 
-It takes inspiration from classic menus (Mega Hack style) but uses cleaner, different tab names while keeping the same core functions.
+Inspired by classic hack menus but uses different tab names while keeping the same core functions.
 
-## Tabs Overview
+## Current Tabs
 
-| Tab          | Purpose                                      |
-|--------------|----------------------------------------------|
-| **Core**     | Main hacks (Noclip, Speedhack, etc.)         |
-| **Protection** | Bypass & safety options                    |
-| **Editor**   | Creator / level editor tools                 |
-| **Visual**   | Cosmetic & effect toggles                    |
-| **Gameplay** | Level / practice / auto features             |
-| **Info**     | Status displays, counters, stats             |
-| **Global**   | Universal options                            |
-| **Safety**   | Cheat safety & rulesets                      |
-| **Screen**   | Display, FPS, interface                      |
-| **Tools**    | Utility features                             |
-| **Replay**   | Recording & playback                         |
+- **Core** – Main gameplay hacks (Noclip, Speedhack, etc.)
+- **Protection** – Bypass & unlock options
+- **Editor** – Creator / editor tools
+- **Visual** – Cosmetic & effect toggles
+- **Gameplay** – Practice, auto features, hitboxes
+- **Info** – Status displays & counters
+- **Global** – Universal options
+- **Safety** – Cheat safety & rulesets
+- **Screen** – Display, FPS, interface
+- **Tools** – Utility features
+- **Replay** – Recording tools
 
-## Status
+## Implemented Features (so far)
 
-This is the foundation. Core systems and several high-priority features are being implemented first.
-Full feature parity with classic menus is a long-term goal and will be added step by step.
+### Core
+- Noclip (with optional accuracy display)
+- Speedhack (with audio option)
+- No Death Effect
+
+### Screen
+- FPS Unlock (up to high values)
+- Show FPS Counter
+
+### Gameplay
+- Show Hitboxes
+- Practice Mode helpers
+- Instant Complete (optional)
+
+### Info
+- Attempt Counter
+- Percentage display helpers
+
+More features are being added step by step with accuracy as priority.
 
 ## Requirements
 
 - Geometry Dash 2.2081+
-- [Geode](https://geode-sdk.org/) (latest recommended)
+- Latest Geode
 
 ## Building
+
+Use GitHub Actions or:
 
 ```bash
 geode build
 ```
 
-or use the GitHub Actions workflow.
-
 ## Disclaimer
 
-This is a fan-made utility mod. Use responsibly. Some features may be considered cheating on online leaderboards or private servers. The authors are not responsible for any account consequences.
-
-## Credits
-
-Inspired by the classic Geometry Dash modding community.
+This is a fan-made utility mod. Some features can be considered cheating. Use at your own risk. Not affiliated with RobTop Games.

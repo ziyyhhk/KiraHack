@@ -8,20 +8,58 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.0.0-alpha",
+	"version": "1.1.0-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod with a clean tabbed menu. Inspired by classic hack menus but with different organization.",
+	"description": "Modern Geometry Dash utility mod with a clean tabbed menu. Core hacks + more features being added accurately.",
 	"early-load": false,
 	"tags": ["utility", "cheat", "enhancement", "menu"],
 	"links": {
 		"source": "https://github.com/ziyyhhk/KiraHack"
 	},
 	"settings": {
-		"enable-menu": {
-			"name": "Enable Menu",
-			"description": "Master toggle for the KiraHack menu",
+		"noclip": {
+			"name": "Noclip",
+			"type": "bool",
+			"default": false
+		},
+		"noclip-accuracy": {
+			"name": "Noclip Accuracy Display",
 			"type": "bool",
 			"default": true
+		},
+		"speedhack-enabled": {
+			"name": "Speedhack",
+			"type": "bool",
+			"default": false
+		},
+		"speedhack-value": {
+			"name": "Speedhack Multiplier",
+			"type": "float",
+			"default": 1.0,
+			"min": 0.1,
+			"max": 5.0
+		},
+		"show-hitboxes": {
+			"name": "Show Hitboxes",
+			"type": "bool",
+			"default": false
+		},
+		"fps-unlock": {
+			"name": "FPS Unlock",
+			"type": "bool",
+			"default": false
+		},
+		"target-fps": {
+			"name": "Target FPS",
+			"type": "int",
+			"default": 240,
+			"min": 60,
+			"max": 1000
+		},
+		"no-death-effect": {
+			"name": "No Death Effect",
+			"type": "bool",
+			"default": false
 		}
 	}
 }
