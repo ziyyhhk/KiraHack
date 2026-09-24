@@ -28,7 +28,7 @@ jobs:
         with:
           sdk: latest
 
-      - name: Upload
+      - name: Upload artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
