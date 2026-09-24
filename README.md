@@ -2,16 +2,18 @@
 
 Modern Geometry Dash utility mod.
 
-## Display settings (separated like Mega Hack)
+## Display (styled like Mega Hack)
 
-- **Unlock FPS** – toggle
-- **FPS** – target frames per second
-- **Physics TPS** – physics tick rate option
-- **Hz** – refresh rate value
+- Unlock FPS
+- FPS (default 240)
+- Hz (default 360)
+- Physics TPS
+- Frame Extrapolation
+- Vertical Sync
+- Lock Delta
+- Real Time
+- Borderless Classic
 
-Also includes:
-- Noclip
-- Speedhack
+Also has Noclip + Speedhack.
 
-## Build
-Check the Actions tab. Latest commit separates FPS / TPS / Hz cleanly.
+Build via GitHub Actions.

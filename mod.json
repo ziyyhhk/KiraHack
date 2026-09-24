@@ -8,9 +8,9 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.3.2-alpha",
+	"version": "1.3.3-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod. Unlock FPS, Physics TPS, Hz separated.",
+	"description": "Modern Geometry Dash utility mod. Display settings styled like Mega Hack.",
 	"tags": ["utility", "cheat", "enhancement"],
 	"links": {
 		"source": "https://github.com/ziyyhhk/KiraHack"
@@ -38,10 +38,17 @@
 			"type": "bool",
 			"default": false
 		},
-		"target-fps": {
+		"fps": {
 			"name": "FPS",
 			"type": "int",
 			"default": 240,
+			"min": 60,
+			"max": 1000
+		},
+		"hz": {
+			"name": "Hz",
+			"type": "int",
+			"default": 360,
 			"min": 60,
 			"max": 1000
 		},
@@ -50,12 +57,30 @@
 			"type": "bool",
 			"default": false
 		},
-		"hz": {
-			"name": "Hz",
-			"type": "int",
-			"default": 240,
-			"min": 60,
-			"max": 1000
+		"frame-extrapolation": {
+			"name": "Frame Extrapolation",
+			"type": "bool",
+			"default": false
+		},
+		"vertical-sync": {
+			"name": "Vertical Sync",
+			"type": "bool",
+			"default": false
+		},
+		"lock-delta": {
+			"name": "Lock Delta",
+			"type": "bool",
+			"default": false
+		},
+		"real-time": {
+			"name": "Real Time",
+			"type": "bool",
+			"default": false
+		},
+		"borderless-classic": {
+			"name": "Borderless Classic",
+			"type": "bool",
+			"default": false
 		}
 	}
 }
