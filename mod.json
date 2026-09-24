@@ -8,9 +8,9 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.1.0-alpha",
+	"version": "1.2.0-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod with a clean tabbed menu. Core hacks + more features being added accurately.",
+	"description": "Modern Geometry Dash utility mod with real in-game tabbed menu. Accurate core features first.",
 	"early-load": false,
 	"tags": ["utility", "cheat", "enhancement", "menu"],
 	"links": {
@@ -19,13 +19,9 @@
 	"settings": {
 		"noclip": {
 			"name": "Noclip",
+			"description": "Disable player death / collision with hazards",
 			"type": "bool",
 			"default": false
-		},
-		"noclip-accuracy": {
-			"name": "Noclip Accuracy Display",
-			"type": "bool",
-			"default": true
 		},
 		"speedhack-enabled": {
 			"name": "Speedhack",
@@ -33,16 +29,12 @@
 			"default": false
 		},
 		"speedhack-value": {
-			"name": "Speedhack Multiplier",
+			"name": "Speed Multiplier",
 			"type": "float",
 			"default": 1.0,
 			"min": 0.1,
-			"max": 5.0
-		},
-		"show-hitboxes": {
-			"name": "Show Hitboxes",
-			"type": "bool",
-			"default": false
+			"max": 5.0,
+			"control": {"slider": true}
 		},
 		"fps-unlock": {
 			"name": "FPS Unlock",
@@ -55,6 +47,11 @@
 			"default": 240,
 			"min": 60,
 			"max": 1000
+		},
+		"show-hitboxes": {
+			"name": "Show Hitboxes",
+			"type": "bool",
+			"default": false
 		},
 		"no-death-effect": {
 			"name": "No Death Effect",
