@@ -1,13 +1,10 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
-#include <Geode/modify/MenuLayer.hpp>
-#include <Geode/ui/BasedButtonSprite.hpp>
 
 using namespace geode::prelude;
 
-// Simple tab enum matching our design
 enum class KiraTab {
-    Core,
+    Core = 0,
     Protection,
     Editor,
     Visual,
@@ -21,9 +18,7 @@ enum class KiraTab {
 };
 
 static bool g_menuOpen = false;
-static KiraTab g_currentTab = KiraTab::Core;
 
-// Very lightweight menu layer (will be expanded)
 class KiraMenuLayer : public CCLayer {
 public:
     static KiraMenuLayer* create() {
@@ -40,59 +35,49 @@ public:
         if (!CCLayer::init()) return false;
 
         this->setKeypadEnabled(true);
-        this->setTouchEnabled(true);
 
-        auto winSize = CCDirector::sharedDirector()->getWinSize();
+        auto winSize = CCDirector::get()->getWinSize();
 
-        // Dark background
-        auto bg = CCLayerColor::create({0, 0, 0, 180});
+        auto bg = CCLayerColor::create({20, 20, 30, 200});
         bg->setContentSize(winSize);
         this->addChild(bg);
 
-        // Title
         auto title = CCLabelBMFont::create("KiraHack", "bigFont.fnt");
-        title->setScale(0.7f);
-        title->setPosition({winSize.width / 2, winSize.height - 40});
+        title->setScale(0.65f);
+        title->setPosition({winSize.width / 2.f, winSize.height - 35.f});
         this->addChild(title);
 
-        // Simple tab buttons (placeholder layout)
-        const char* tabNames[] = {
+        // Tab labels
+        const char* tabs[] = {
             "Core", "Protection", "Editor", "Visual", "Gameplay",
             "Info", "Global", "Safety", "Screen", "Tools", "Replay"
         };
 
-        float startX = 80.f;
-        float y = winSize.height - 90.f;
+        float x = 60.f;
+        float y = winSize.height - 80.f;
 
-        for (int i = 0; i < 11; i++) {
-            auto btn = CCMenuItemLabel::create(
-                CCLabelBMFont::create(tabNames[i], "goldFont.fnt"),
-                this,
-                menu_selector(KiraMenuLayer::onTab)
-            );
-            btn->setTag(i);
-            btn->setScale(0.45f);
-            btn->setPosition({startX + (i % 6) * 90.f, y - (i / 6) * 35.f});
-
-            auto menu = CCMenu::create(btn, nullptr);
-            menu->setPosition({0, 0});
-            this->addChild(menu);
+        for (int i = 0; i < 11; ++i) {
+            auto label = CCLabelBMFont::create(tabs[i], "goldFont.fnt");
+            label->setScale(0.4f);
+            label->setPosition({x + (i % 6) * 95.f, y - (i / 6) * 30.f});
+            this->addChild(label);
         }
 
-        // Close hint
+        // Screen / Display section hint
+        auto info = CCLabelBMFont::create(
+            "Screen tab: Unlock FPS, Physics TPS, VSync, Lock Delta",
+            "chatFont.fnt"
+        );
+        info->setScale(0.55f);
+        info->setPosition({winSize.width / 2.f, winSize.height / 2.f});
+        this->addChild(info);
+
         auto hint = CCLabelBMFont::create("Press TAB or ESC to close", "chatFont.fnt");
-        hint->setScale(0.6f);
-        hint->setPosition({winSize.width / 2, 30});
+        hint->setScale(0.55f);
+        hint->setPosition({winSize.width / 2.f, 25.f});
         this->addChild(hint);
 
         return true;
-    }
-
-    void onTab(CCObject* sender) {
-        auto btn = static_cast<CCMenuItem*>(sender);
-        g_currentTab = static_cast<KiraTab>(btn->getTag());
-        log::info("Switched to tab {}", btn->getTag());
-        // Later: refresh content for the selected tab
     }
 
     void keyBackClicked() override {
@@ -101,21 +86,20 @@ public:
     }
 };
 
-// Open / close menu with Tab key
 class $modify(CCKeyboardDispatcher) {
-    bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool repeat) {
-        if (down && !repeat && key == KEY_Tab) {
-            if (g_menuOpen) {
-                // close handled by keyBackClicked
-            } else {
-                if (auto scene = CCDirector::sharedDirector()->getRunningScene()) {
+    bool dispatchKeyboardMSG(enumKeyCodes key, bool isKeyDown, bool isKeyRepeat) {
+        if (isKeyDown && !isKeyRepeat && key == KEY_Tab) {
+            if (!g_menuOpen) {
+                if (auto scene = CCDirector::get()->getRunningScene()) {
                     auto menu = KiraMenuLayer::create();
-                    scene->addChild(menu, 999);
-                    g_menuOpen = true;
+                    if (menu) {
+                        scene->addChild(menu, 999);
+                        g_menuOpen = true;
+                    }
                 }
             }
             return true;
         }
-        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, repeat);
+        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, isKeyDown, isKeyRepeat);
     }
 };

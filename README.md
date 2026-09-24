@@ -1,28 +1,29 @@
 # KiraHack
 
-Modern Geometry Dash utility mod with a **real in-game tabbed menu**.
+Modern Geometry Dash utility mod with real in-game tabbed menu.
 
-## How to open the menu
-Press **TAB** in-game.
+## Open menu
+Press **TAB**
 
-## Current Tabs
-Core · Protection · Editor · Visual · Gameplay · Info · Global · Safety · Screen · Tools · Replay
+## Tabs
+Core · Protection · Editor · Visual · Gameplay · Info · Global · Safety · **Screen** · Tools · Replay
 
-## Working features (accurate first)
+## Current accurate features
+
+### Core
 - Noclip
-- Speedhack (with multiplier)
-- FPS Unlock
-- Show Hitboxes (foundation)
-- No Death Effect
+- Speedhack
 
-We are adding features slowly and accurately instead of rushing a broken full clone of Mega Hack.
+### Screen / Display (requested)
+- **Unlock FPS** (custom target)
+- **Physics TPS** toggle
+- **Vertical Sync**
+- **Lock Delta**
 
-## Requirements
-- Geometry Dash 2.2081+
-- Latest Geode
+More features are being added slowly and accurately.
 
-## Build
-Use the GitHub Actions workflow or `geode build`.
+## Build status
+GitHub Actions should now build correctly with the latest Geode SDK.
 
 ## Disclaimer
-Fan-made utility mod. Some features can be considered cheating. Use responsibly.
+Fan-made utility. Some features can be considered cheating. Use responsibly.

@@ -4,39 +4,32 @@
 
 using namespace geode::prelude;
 
-// ======================
-// Global state (synced with settings)
-// ======================
 namespace Kira {
     bool noclip = false;
-    bool showHitboxes = false;
-    bool noDeathEffect = false;
     bool speedEnabled = false;
     float speedValue = 1.0f;
     bool fpsUnlock = false;
     int targetFps = 240;
+    bool verticalSync = false;
+    bool lockDelta = false;
 }
 
 $on_mod(Loaded) {
-    log::info("KiraHack loaded - menu available with TAB key");
+    log::info("KiraHack 1.2.1-alpha loaded");
 
-    Kira::noclip = Mod::get()->getSettingValue<bool>("noclip");
-    Kira::showHitboxes = Mod::get()->getSettingValue<bool>("show-hitboxes");
-    Kira::noDeathEffect = Mod::get()->getSettingValue<bool>("no-death-effect");
-    Kira::speedEnabled = Mod::get()->getSettingValue<bool>("speedhack-enabled");
-    Kira::speedValue = static_cast<float>(Mod::get()->getSettingValue<double>("speedhack-value"));
-    Kira::fpsUnlock = Mod::get()->getSettingValue<bool>("fps-unlock");
-    Kira::targetFps = static_cast<int>(Mod::get()->getSettingValue<int64_t>("target-fps"));
+    auto mod = Mod::get();
+    Kira::noclip = mod->getSettingValue<bool>("noclip");
+    Kira::speedEnabled = mod->getSettingValue<bool>("speedhack-enabled");
+    Kira::speedValue = static_cast<float>(mod->getSettingValue<double>("speedhack-value"));
+    Kira::fpsUnlock = mod->getSettingValue<bool>("fps-unlock");
+    Kira::targetFps = static_cast<int>(mod->getSettingValue<int64_t>("target-fps"));
+    Kira::verticalSync = mod->getSettingValue<bool>("vertical-sync");
+    Kira::lockDelta = mod->getSettingValue<bool>("lock-delta");
 }
 
-// ======================
-// Core gameplay hooks
-// ======================
 class $modify(PlayLayer) {
     void destroyPlayer(PlayerObject* player, GameObject* obj) {
-        if (Kira::noclip) {
-            return; // skip death
-        }
+        if (Kira::noclip) return;
         PlayLayer::destroyPlayer(player, obj);
     }
 
@@ -44,11 +37,14 @@ class $modify(PlayLayer) {
         if (Kira::speedEnabled && Kira::speedValue != 1.0f) {
             dt *= Kira::speedValue;
         }
+        if (Kira::lockDelta) {
+            // simple lock to fixed step for stability testing
+            dt = 1.0f / 240.0f;
+        }
         PlayLayer::update(dt);
     }
 };
 
-// FPS unlock
 class $modify(CCDirector) {
     void setAnimationInterval(double interval) {
         if (Kira::fpsUnlock && Kira::targetFps > 0) {

@@ -1,5 +1,5 @@
 {
-	"geode": "4.3.0",
+	"geode": "4.4.0",
 	"gd": {
 		"win": "2.2081",
 		"android": "2.2081",
@@ -8,9 +8,9 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.2.0-alpha",
+	"version": "1.2.1-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod with real in-game tabbed menu. Accurate core features first.",
+	"description": "Modern Geometry Dash utility mod with in-game tabbed menu. Accurate core + Display features.",
 	"early-load": false,
 	"tags": ["utility", "cheat", "enhancement", "menu"],
 	"links": {
@@ -19,7 +19,6 @@
 	"settings": {
 		"noclip": {
 			"name": "Noclip",
-			"description": "Disable player death / collision with hazards",
 			"type": "bool",
 			"default": false
 		},
@@ -33,11 +32,10 @@
 			"type": "float",
 			"default": 1.0,
 			"min": 0.1,
-			"max": 5.0,
-			"control": {"slider": true}
+			"max": 5.0
 		},
 		"fps-unlock": {
-			"name": "FPS Unlock",
+			"name": "Unlock FPS",
 			"type": "bool",
 			"default": false
 		},
@@ -47,6 +45,22 @@
 			"default": 240,
 			"min": 60,
 			"max": 1000
+		},
+		"physics-tps": {
+			"name": "Physics TPS",
+			"description": "Show / use higher physics tick rate display",
+			"type": "bool",
+			"default": false
+		},
+		"vertical-sync": {
+			"name": "Vertical Sync",
+			"type": "bool",
+			"default": false
+		},
+		"lock-delta": {
+			"name": "Lock Delta",
+			"type": "bool",
+			"default": false
 		},
 		"show-hitboxes": {
 			"name": "Show Hitboxes",
