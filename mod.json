@@ -8,9 +8,9 @@
 	},
 	"id": "ziyyhhk.kirahack",
 	"name": "KiraHack",
-	"version": "1.3.0-alpha",
+	"version": "1.3.1-alpha",
 	"developer": "ziyyhhk",
-	"description": "Modern Geometry Dash utility mod. Core features + Unlock FPS/Hz.",
+	"description": "Modern Geometry Dash utility mod. Separate Unlock FPS / Physics TPS / Hz like Mega Hack.",
 	"tags": ["utility", "cheat", "enhancement"],
 	"links": {
 		"source": "https://github.com/ziyyhhk/KiraHack"
@@ -34,12 +34,28 @@
 			"max": 5.0
 		},
 		"unlock-fps": {
-			"name": "Unlock FPS / Hz",
+			"name": "Unlock FPS",
+			"description": "Unlock the FPS limit",
 			"type": "bool",
 			"default": false
 		},
 		"target-fps": {
-			"name": "Target FPS / Hz",
+			"name": "FPS",
+			"description": "Target frames per second",
+			"type": "int",
+			"default": 240,
+			"min": 60,
+			"max": 1000
+		},
+		"physics-tps": {
+			"name": "Physics TPS",
+			"description": "Show / force higher physics tick rate",
+			"type": "bool",
+			"default": false
+		},
+		"hz": {
+			"name": "Hz",
+			"description": "Display refresh rate / Hz value",
 			"type": "int",
 			"default": 240,
 			"min": 60,

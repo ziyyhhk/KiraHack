@@ -11,10 +11,12 @@ namespace Kira {
     float speedValue = 1.0f;
     bool unlockFps = false;
     int targetFps = 240;
+    bool physicsTps = false;
+    int hz = 240;
 }
 
 $on_mod(Loaded) {
-    log::info("KiraHack 1.3.0-alpha loaded");
+    log::info("KiraHack 1.3.1-alpha loaded");
 
     auto mod = Mod::get();
     Kira::noclip = mod->getSettingValue<bool>("noclip");
@@ -22,6 +24,8 @@ $on_mod(Loaded) {
     Kira::speedValue = static_cast<float>(mod->getSettingValue<double>("speedhack-value"));
     Kira::unlockFps = mod->getSettingValue<bool>("unlock-fps");
     Kira::targetFps = static_cast<int>(mod->getSettingValue<int64_t>("target-fps"));
+    Kira::physicsTps = mod->getSettingValue<bool>("physics-tps");
+    Kira::hz = static_cast<int>(mod->getSettingValue<int64_t>("hz"));
 }
 
 class $modify(PlayLayer) {
@@ -42,8 +46,13 @@ class $modify(PlayLayer) {
 
 class $modify(CCDirector) {
     void setAnimationInterval(double value) {
+        // Unlock FPS uses the FPS value
         if (Kira::unlockFps && Kira::targetFps > 0) {
             value = 1.0 / static_cast<double>(Kira::targetFps);
+        }
+        // Hz can be used as alternative refresh target
+        else if (Kira::hz > 0 && Kira::unlockFps) {
+            value = 1.0 / static_cast<double>(Kira::hz);
         }
         CCDirector::setAnimationInterval(value);
     }
@@ -51,10 +60,8 @@ class $modify(CCDirector) {
 
 class $modify(MenuLayer) {
     bool init() {
-        if (!MenuLayer::init()) {
-            return false;
-        }
-        log::debug("KiraHack MenuLayer ready");
+        if (!MenuLayer::init()) return false;
+        log::debug("KiraHack ready - separate FPS / TPS / Hz settings available");
         return true;
     }
 };
