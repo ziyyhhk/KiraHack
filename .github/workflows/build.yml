@@ -20,17 +20,15 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Build Geode Mod
         id: build
         uses: geode-sdk/build-geode-mod@main
         with:
           sdk: latest
-          combine: false
 
-      - name: Upload artifact
+      - name: Upload
         if: success()
         uses: actions/upload-artifact@v4
         with:
